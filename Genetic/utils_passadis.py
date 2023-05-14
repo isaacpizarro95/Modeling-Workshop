@@ -61,49 +61,71 @@ def crear_entrades(m, n, mod, passadis, parets_original, a_entrada, num_entrades
             entrades.append([p for p in parets if p[0] == (m-1)])
 
         else:
-            for i in range(num_entrades):
-                entrada = []
+            entrada1 = [] 
+            entrada2 = [] 
+            entrada3 = [] 
+            entrada4 = []
+            if entrades_laterals == True:
+                for i in range(a_entrada):
+                    entrada1.append((0, int(n/2) + i - 1))
+                    entrada2.append((m-1, int(n/2) + i - 1))
+                    entrada3.append((int(m/2) + i - 1, 0))
+                    entrada4.append((int(m/2) + i - 1, n-1))            
+            else:
+                for i in range(a_entrada):
+                    entrada1.append((m - 1, int((n-1)/3) + i - 1))
+                    entrada2.append((m - 1, int((n-1)/3) * 2 + i - 1))
+                    entrada3.append((0, int((n-1)/3) + i - 1))
+                    entrada4.append((0, int((n-1)/3) * 2 + i - 1))
+
+            entrades.append(entrada1)
+            entrades.append(entrada2)
+            entrades.append(entrada3)
+            entrades.append(entrada4)
+        # else:
+        #     for i in range(num_entrades):
+        #         entrada = []
                 
-                if entrades_laterals == False:
-                    if i % 2 == 0: fila = 0 # Podem escollir tenir nomes una entrada a un dels costat i crear un coll d'ampolla
-                    else: fila = m-1
-                else: fila = random.choice(posibles_files)
+        #         if entrades_laterals == False:
+        #             if i % 2 == 0: fila = 0 # Podem escollir tenir nomes una entrada a un dels costat i crear un coll d'ampolla
+        #             else: fila = m-1
+        #         else: fila = random.choice(posibles_files)
 
-                if not parets: return entrades, passadis
+        #         if not parets: return entrades, passadis
 
-                posibles_entradas = ([p for p in parets if p[0] == fila])
-                if posibles_entradas:
-                    p = random.choice(posibles_entradas)
-                else: continue
+        #         posibles_entradas = ([p for p in parets if p[0] == fila])
+        #         if posibles_entradas:
+        #             p = random.choice(posibles_entradas)
+        #         else: continue
 
-                entrada.append(p)
-                if p in parets: parets.remove(p)
+        #         entrada.append(p)
+        #         if p in parets: parets.remove(p)
             
-                if (p[1] + a_entrada-1) < (n-1) and (p[0], p[1]+a_entrada-1) in parets:
-                    for i in range(a_entrada - 1): 
-                        entrada.append((p[0], p[1]+i+1))
-                        if p in parets: parets.remove((p[0], p[1]+i+1))
+        #         if (p[1] + a_entrada-1) < (n-1) and (p[0], p[1]+a_entrada-1) in parets:
+        #             for i in range(a_entrada - 1): 
+        #                 entrada.append((p[0], p[1]+i+1))
+        #                 if p in parets: parets.remove((p[0], p[1]+i+1))
 
-                elif (p[1] - a_entrada-1) > 0 and (p[0], p[1]-a_entrada+1) in parets:
-                    for i in range(a_entrada - 1): 
-                        entrada.append((p[0], p[1]-i-1))
-                        if p in parets: parets.remove((p[0], p[1]-i-1))
+        #         elif (p[1] - a_entrada-1) > 0 and (p[0], p[1]-a_entrada+1) in parets:
+        #             for i in range(a_entrada - 1): 
+        #                 entrada.append((p[0], p[1]-i-1))
+        #                 if p in parets: parets.remove((p[0], p[1]-i-1))
 
-                elif (p[0] + a_entrada-1) < (m-1) and (p[0]+a_entrada-1, p[1]) in parets:
-                    for i in range(a_entrada - 1): 
-                        entrada.append((p[0]+i+1, p[1]))
-                        if p in parets: parets.remove((p[0]+i+1, p[1]))
+        #         elif (p[0] + a_entrada-1) < (m-1) and (p[0]+a_entrada-1, p[1]) in parets:
+        #             for i in range(a_entrada - 1): 
+        #                 entrada.append((p[0]+i+1, p[1]))
+        #                 if p in parets: parets.remove((p[0]+i+1, p[1]))
 
-                elif (p[0] - a_entrada-1) > 0 and (p[0]-a_entrada+1, p[1]) in parets:
-                    for i in range(a_entrada - 1): 
-                        entrada.append((p[0]-i-1, p[1]))
-                        if p in parets: parets.remove((p[0]-i-1, p[1]))
+        #         elif (p[0] - a_entrada-1) > 0 and (p[0]-a_entrada+1, p[1]) in parets:
+        #             for i in range(a_entrada - 1): 
+        #                 entrada.append((p[0]-i-1, p[1]))
+        #                 if p in parets: parets.remove((p[0]-i-1, p[1]))
 
-                else: 
-                    if a_entrada == 1: entrades.append(entrada)
-                    else: entrada.remove(p)
+        #         else: 
+        #             if a_entrada == 1: entrades.append(entrada)
+        #             else: entrada.remove(p)
 
-                if entrada: entrades.append(entrada)
+        #         if entrada: entrades.append(entrada)
     
     elif mod == 'coll_ampolla':
         entrades.append([p for p in parets if p[0] == (m-1)])

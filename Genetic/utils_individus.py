@@ -102,25 +102,6 @@ def anotar_interaccio(ind, tipus_interaccio):
     if tipus_interaccio == 1: ind.trajecte.add_agrupat()
     elif tipus_interaccio == 0: ind.trajecte.add_colisio()
 
-# def funcio_aptitud(trajecte, m, n):
-#     colisions = trajecte.get_n_colisions()
-#     t_recorregut = trajecte.get_t_recorregut()
-#     agrupacions = trajecte.get_n_agrupat()
-#     canvis_direccio = trajecte.get_canvis_direccio()
-
-#     # Tenir en compte les dimensions del mapa per normalitzar l'aptitud
-#     aptitud = agrupacions - colisions - t_recorregut - canvis_direccio
-
-#     #aptitud_normalitzada = (aptitud - minim) / (maxim - minim)
-#     return aptitud
-
-                    # *********** FALTA FER *********** #
-
-# EL QUE TRANSMITIM DE GENERACIÓ EN GENERACIÓ SERAN ELS PESOS QUE S'ASSIGNEN A CADA VARIABLE PER FER LA SUMA.
-# PROCÉS DE L'ALGORITME GENETIC: CREACIÓ GENERACIÓ, SELECCIÓ, DESCENDENCIA, MUTACIÓ, FUNCIÓ APTITUD
-
-                    # *********** FALTA FER *********** #
-
 def moure_individu(individu, passadis):
     individu.trajecte.add_t_recorregut()
     for i in range(individu.get_velocitat()):
@@ -153,7 +134,7 @@ def moure_individu(individu, passadis):
 
         for pos in posicions:
             if 0 <= pos[0] < passadis.get_m() and 0 <= pos[1] < passadis.get_n() and matriu[pos] != 2 and matriu[pos] != 4:
-                if matriu[pos] == 1: 
+                if matriu[pos] == 1:
                     anotar_interaccio(individu, consultar_interaccio(objectiu, individu.get_direccio(), pos, passadis))
                 
                 else: 
@@ -199,3 +180,23 @@ def moure_individu(individu, passadis):
             matriu[posicio_escollida] = 1
             individu.set_posicio(posicio_escollida)
             passadis.diccionario_posicion[individu.posicio] = individu
+
+
+# def funcio_aptitud(trajecte, m, n):
+#     colisions = trajecte.get_n_colisions()
+#     t_recorregut = trajecte.get_t_recorregut()
+#     agrupacions = trajecte.get_n_agrupat()
+#     canvis_direccio = trajecte.get_canvis_direccio()
+
+#     # Tenir en compte les dimensions del mapa per normalitzar l'aptitud
+#     aptitud = agrupacions - colisions - t_recorregut - canvis_direccio
+
+#     #aptitud_normalitzada = (aptitud - minim) / (maxim - minim)
+#     return aptitud
+
+                    # *********** FALTA FER *********** #
+
+# EL QUE TRANSMITIM DE GENERACIÓ EN GENERACIÓ SERAN ELS PESOS QUE S'ASSIGNEN A CADA VARIABLE PER FER LA SUMA.
+# PROCÉS DE L'ALGORITME GENETIC: CREACIÓ GENERACIÓ, SELECCIÓ, DESCENDENCIA, MUTACIÓ, FUNCIÓ APTITUD
+
+                    # *********** FALTA FER *********** #
